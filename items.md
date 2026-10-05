@@ -47,7 +47,7 @@
 
 ### ASUS ProArt PA278CV 27" monitor
 - **Название:** Монитор ASUS ProArt PA278CV 27"
-- **Цена:** 4 000 000 IDR   (новый: ~6–6.5 млн)
+- **Цена:** 5 500 000 IDR   (новый: ~6–6.5 млн)
 - **Condition:** excellent
 - **Состояние:** идеальное
 - **Description:** 27", 2560×1440, IPS, 100% sRGB, factory calibrated; USB-C with 65 W laptop charging — one cable to a MacBook
@@ -76,7 +76,7 @@
 - **Описание:** 61 клавиша, чувствительные к нажатию; в комплекте стойка и педаль
 - **Забрать:** сразу
 - **Фото:** photos/stock/yamaha-psr-e363.jpg
-- **Статус:** в продаже
+- **Статус:** продано
 
 ### Epson EcoTank L3250 Wi-Fi printer
 - **Название:** МФУ Epson EcoTank L3250 Wi-Fi
@@ -266,4 +266,15 @@
 - **Описание:** Фишки, карты, кейс
 - **Забрать:** сразу
 - **Фото:** photos/stock/poker-set.jpg
+- **Статус:** в продаже
+
+### Monopoly board game
+- **Название:** Настольная игра «Монополия»
+- **Цена:** 250 000 IDR   (новая: ~400–600 тыс)
+- **Condition:** good, complete set
+- **Состояние:** хорошее, полный комплект
+- **Description:** Classic Monopoly board game
+- **Описание:** Классическая «Монополия»
+- **Забрать:** сразу
+- **Фото:** photos/stock/monopoly.jpg
 - **Статус:** в продаже
