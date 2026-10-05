@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farewell sale — Bali</title>
+<meta name="description" content="Moving sale before leaving Bali: electronics, longboards, tools, a scooter. Pick-up in Kedungu.">
+<meta property="og:title" content="Farewell sale — Bali">
+<meta property="og:description" content="Electronics, longboards, tools, a scooter. Pick-up in Kedungu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paddy: #E6ECDF;     /* фон — рисовое поле в утреннем тумане */
+    --sheet: #F8FAF4;     /* карточка */
+    --jungle: #1D2B22;    /* текст */
+    --moss: #5F6F63;      /* второстепенный текст */
+    --sticker: #F5D547;   /* жёлтый ценник, как на варунге */
+    --hibiscus: #C8323B;  /* бронь / продано */
+    --line: #CBD5C4;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paddy);
+    color: var(--jungle);
+    font: 400 16px/1.5 "Golos Text", system-ui, sans-serif;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--jungle); outline-offset: 2px; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+  /* ——— Шапка ——— */
+  header.wrap { padding-block: 16px 28px; }
+  .top { display: flex; justify-content: flex-end; margin-bottom: 24px; }
+  .lang { display: flex; border: 1.5px solid var(--jungle); border-radius: 999px; overflow: hidden; }
+  .lang button {
+    font: 600 14px/1 "Golos Text", sans-serif; color: var(--jungle);
+    background: transparent; border: 0; padding: 8px 12px; cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { background: var(--jungle); color: var(--sheet); }
+  h1 {
+    font: 900 clamp(24px, 8.8vw, 96px)/0.92 "Unbounded", sans-serif;
+    overflow-wrap: break-word;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px;
+    max-width: 11ch;
+  }
+  .lede { font-size: 18px; max-width: 34em; margin: 0 0 20px; }
+  .lede strong { font-weight: 600; }
+  .dm {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--jungle); color: var(--sheet);
+    text-decoration: none; font-weight: 600;
+    padding: 12px 20px; border-radius: 999px;
+  }
+  .dm[hidden] { display: none; }
+  .dm svg { width: 20px; height: 20px; }
+
+  /* ——— Фильтры ——— */
+  .filters {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--paddy);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+  }
+  .filters .wrap { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+  .filters .wrap::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: none;
+    font: 500 15px/1 "Golos Text", sans-serif;
+    color: var(--jungle);
+    background: transparent;
+    border: 1.5px solid var(--jungle);
+    border-radius: 999px;
+    padding: 9px 14px;
+    cursor: pointer;
+  }
+  .chip[aria-pressed="true"] { background: var(--jungle); color: var(--sheet); }
+  .chip .n { opacity: .6; margin-left: 4px; }
+  .chip.now { border-style: dashed; }
+
+  /* ——— Разделы ——— */
+  main.wrap { padding-block: 8px 64px; }
+  section { margin-top: 36px; }
+  h2 {
+    font: 700 22px/1.2 "Unbounded", sans-serif;
+    margin: 0 0 16px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  /* ——— Карточка ——— */
+  .item {
+    position: relative;
+    background: var(--sheet);
+    border-radius: var(--radius);
+    display: flex; flex-direction: column;
+  }
+  .photos {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius) var(--radius) 0 0;
+    overflow: hidden;
+    background: #D7DFD0;
+  }
+  .photos .track {
+    display: flex; height: 100%;
+    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  }
+  .photos .track::-webkit-scrollbar { display: none; }
+  .photos img {
+    flex: none; width: 100%; height: 100%; object-fit: cover;
+    scroll-snap-align: start; cursor: zoom-in;
+  }
+  .photos img.stock { object-fit: contain; background: #fff; padding: 12px; }
+  .photos .tag {
+    position: absolute; left: 10px; bottom: 10px;
+    background: rgba(248,250,244,.92); color: var(--moss);
+    font-size: 12px; padding: 3px 8px; border-radius: 999px;
+  }
+  .photos .count {
+    position: absolute; right: 10px; bottom: 10px;
+    background: rgba(29,43,34,.75); color: #fff;
+    font-size: 13px; padding: 3px 8px; border-radius: 999px;
+  }
+  .nophoto {
+    height: 100%; display: grid; place-items: center;
+    font-size: 14px; color: var(--moss);
+  }
+
+  /* Жёлтый ценник — главный акцент страницы */
+  .price {
+    position: absolute; top: 12px; left: -6px; z-index: 2;
+    background: var(--sticker);
+    font: 700 20px/1 "Unbounded", sans-serif;
+    padding: 10px 14px 9px;
+    border-radius: 4px 10px 10px 4px;
+    transform: rotate(-3deg);
+    box-shadow: 0 2px 0 rgba(29,43,34,.18);
+  }
+  .price small { font-size: 12px; font-weight: 500; margin-left: 2px; }
+
+  .body { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  h3 { font: 600 18px/1.3 "Golos Text", sans-serif; margin: 0; }
+  .cond { color: var(--moss); font-size: 15px; margin: 0; }
+  .desc { font-size: 15px; margin: 0; }
+  .pickup {
+    margin-top: auto; padding-top: 6px;
+    font-size: 14px; font-weight: 500;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .pickup::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: #3E9B5B;
+  }
+  .pickup.later::before { background: #D99A2B; }
+
+  /* Бронь и продано */
+  .stamp {
+    position: absolute; top: 16px; right: 12px; z-index: 2;
+    font: 700 13px/1 "Unbounded", sans-serif;
+    color: var(--hibiscus);
+    border: 2px solid var(--hibiscus);
+    border-radius: 6px;
+    padding: 6px 8px;
+    background: var(--sheet);
+    transform: rotate(4deg);
+  }
+  .item.sold .photos, .item.sold .body { opacity: .45; filter: grayscale(1); }
+  .item.sold .price { background: #DADFD5; text-decoration: line-through; }
+
+  .empty, .error { padding: 48px 0; color: var(--moss); }
+
+  footer.wrap { color: var(--moss); font-size: 14px; padding-bottom: 40px; }
+
+  /* Просмотр фото */
+  dialog {
+    border: 0; padding: 0; background: transparent;
+    max-width: 96vw; max-height: 92vh;
+  }
+  dialog::backdrop { background: rgba(20,28,23,.9); }
+  dialog img { display: block; max-width: 96vw; max-height: 92vh; object-fit: contain; border-radius: 8px; }
+  dialog button {
+    position: fixed; top: 12px; right: 12px;
+    width: 44px; height: 44px; border-radius: 50%;
+    border: 0; background: var(--sheet); color: var(--jungle);
+    font-size: 24px; line-height: 1; cursor: pointer;
+  }
+
+  @media (max-width: 560px) {
+    .lede { font-size: 17px; }
+    .grid { grid-template-columns: 1fr; gap: 16px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .price { transition: transform .2s; }
+    .item:hover .price { transform: rotate(0deg); }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="top">
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    </div>
+  </div>
+  <h1 id="title">Farewell sale</h1>
+  <p class="lede" id="lede">Loading the list…</p>
+  <a class="dm" id="dm" hidden target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+    <span data-t="dm">Message me on Instagram</span>
+  </a>
+</header>
+
+<nav class="filters" aria-label="Categories">
+  <div class="wrap" id="chips"></div>
+</nav>
+
+<main class="wrap" id="list"></main>
+
+<footer class="wrap" id="foot"></footer>
+
+<dialog id="viewer">
+  <button type="button" aria-label="Close">×</button>
+  <img alt="">
+</dialog>
+
+<script>
+const SOURCE = 'items.md';
+
+const T = {
+  en: {
+    title: 'Farewell sale',
+    docTitle: 'Farewell sale — Bali',
+    lede: (when, where) =>
+      `I’m leaving Bali ${when ? 'at the ' + when : 'soon'}.` +
+      (where ? ` Pick-up in <strong>${where}</strong>.` : '') +
+      ' Prices in rupiah. Some things can be picked up now, the rest closer to my departure.',
+    dm: 'Message me on Instagram',
+    all: 'All', now: 'Pick up now',
+    pickNow: 'Can pick up now', pickLater: 'Pick up closer to departure',
+    sold: 'Sold', reserved: 'Reserved',
+    noPhoto: 'Photo coming soon', photos: 'photos', stock: 'Stock photo',
+    empty: 'Nothing here yet.',
+    error: 'Couldn’t load the list. Refresh the page in a minute.',
+    foot: 'The list is kept up to date: sold items are marked right away.',
+    mln: 'M', k: 'K', loading: 'Loading the list…',
+  },
+  ru: {
+    title: 'Расхламление',
+    docTitle: 'Расхламление перед отъездом с Бали',
+    lede: (when, where) =>
+      `Уезжаю ${when ? when.replace(/^конец/i, 'в конце') : 'скоро'}.` +
+      (where ? ` Забирать в <strong>${where}</strong>, самовывоз.` : '') +
+      ' Цены в рупиях. Что-то можно забрать уже сейчас, остальное ближе к отъезду.',
+    dm: 'Написать в Instagram',
+    all: 'Всё', now: 'Забрать сейчас',
+    pickNow: 'Можно забрать сейчас', pickLater: 'Забрать ближе к отъезду',
+    sold: 'Продано', reserved: 'Бронь',
+    noPhoto: 'Фото скоро', photos: 'фото', stock: 'Фото из интернета',
+    empty: 'В этой категории пока ничего нет.',
+    error: 'Не получилось загрузить список. Обновите страницу через минуту.',
+    foot: 'Список обновляется: проданное помечаю сразу.',
+    mln: 'млн', k: 'тыс', loading: 'Загружаю список…',
+  },
+};
+
+function initialLang() {
+  const q = new URLSearchParams(location.search).get('lang');
+  if (q in T) return q;
+  try { const s = localStorage.getItem('lang'); if (s in T) return s; } catch (e) {}
+  return 'en';
+}
+let lang = initialLang();
+const t = k => T[lang][k];
+
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const unknown = v => !v || /^_?\?_?$/.test(v.trim()) || /^_?TBD_?$/i.test(v.trim());
+const known = v => unknown(v) ? '' : v;
+
+// Разбираем items.md: шапка из "- **Ключ:** значение", разделы "## EN | RU", вещи "### EN"
+function parse(md) {
+  md = md.replace(/<!--[\s\S]*?-->/g, '');
+  const meta = {}, sections = [];
+  let section = null, item = null;
+  for (const raw of md.split('\n')) {
+    const line = raw.trim();
+    if (line.startsWith('### ')) {
+      item = { name: line.slice(4).trim(), f: {} };
+      section && section.items.push(item);
+    } else if (line.startsWith('## ')) {
+      const [en, ru] = line.slice(3).split('|').map(x => x.trim());
+      section = { key: en, title: { en, ru: ru || en }, items: [] };
+      sections.push(section);
+      item = null;
+    } else {
+      const m = line.match(/^-\s*\*\*(.+?):\*\*\s*(.*)$/);
+      if (!m) continue;
+      (item ? item.f : section ? {} : meta)[m[1].trim()] = m[2].trim();
+    }
+  }
+  return { meta, sections: sections.filter(s => s.items.length) };
+}
+
+// Поля на текущем языке, с запасным вариантом на другом
+function name(it) { return lang === 'ru' ? known(it.f['Название']) || it.name : it.name; }
+function field(it, en, ru) {
+  const a = known(it.f[en]), b = known(it.f[ru]);
+  return lang === 'ru' ? b || a : a || b;
+}
+
+function price(raw) {
+  const n = parseInt((raw || '').split('(')[0].replace(/\D/g, ''), 10);
+  if (!n) return '';
+  const loc = lang === 'ru' ? 'ru-RU' : 'en-US';
+  if (n >= 1e6) return `${(n / 1e6).toLocaleString(loc, { maximumFractionDigits: 2 })}<small>${t('mln')}</small>`;
+  return `${Math.round(n / 1e3)}<small>${t('k')}</small>`;
+}
+
+function status(it) {
+  const s = (it.f['Статус'] || '').toLowerCase();
+  if (/продан|sold/.test(s)) return 'sold';
+  if (/брон|reserv/.test(s)) return 'reserved';
+  return 'available';
+}
+const later = it => /ближе|позже|после|later/i.test(it.f['Забрать'] || '');
+
+const isStock = p => p.includes('/stock/');
+
+function photos(raw) {
+  if (unknown(raw)) return [];
+  return raw.split(',').map(s => s.trim()).filter(Boolean);
+}
+
+function card(it) {
+  const st = status(it), pics = photos(it.f['Фото']), title = name(it);
+  const cond = field(it, 'Condition', 'Состояние');
+  const desc = field(it, 'Description', 'Описание');
+  const media = pics.length
+    ? `<div class="track">${pics.map(p => `<img src="${esc(p)}" alt="${esc(title)}" loading="lazy"${isStock(p) ? ' class="stock"' : ''}>`).join('')}</div>
+       ${pics.every(isStock) ? `<span class="tag">${t('stock')}</span>` : ''}
+       ${pics.length > 1 ? `<span class="count">${pics.length} ${t('photos')}</span>` : ''}`
+    : `<div class="nophoto">${t('noPhoto')}</div>`;
+  const stamp = st === 'available' ? '' : `<span class="stamp">${t(st)}</span>`;
+  const pr = price(it.f['Цена']);
+  return `
+    <article class="item ${st}">
+      ${pr ? `<div class="price">${pr}</div>` : ''}
+      ${stamp}
+      <div class="photos">${media}</div>
+      <div class="body">
+        <h3>${esc(title)}</h3>
+        ${cond ? `<p class="cond">${esc(cond)}</p>` : ''}
+        ${desc ? `<p class="desc">${esc(desc).replace(/_\?_/g, '—')}</p>` : ''}
+        ${st === 'sold' || unknown(it.f['Забрать']) ? '' :
+          `<p class="pickup ${later(it) ? 'later' : ''}">${later(it) ? t('pickLater') : t('pickNow')}</p>`}
+      </div>
+    </article>`;
+}
+
+let data, filter = 'all';
+
+function render() {
+  const order = { available: 0, reserved: 1, sold: 2 };
+  const nowOnly = filter === 'now';
+  const html = data.sections
+    .filter(s => filter === 'all' || nowOnly || s.key === filter)
+    .map(s => {
+      let items = [...s.items].sort((a, b) => order[status(a)] - order[status(b)]);
+      if (nowOnly) items = items.filter(i => status(i) !== 'sold' && !later(i));
+      if (!items.length) return '';
+      return `<section><h2>${esc(s.title[lang])}</h2>
+        <div class="grid">${items.map(card).join('')}</div></section>`;
+    }).join('');
+  document.getElementById('list').innerHTML = html || `<p class="empty">${t('empty')}</p>`;
+}
+
+function chips() {
+  const left = s => s.items.filter(i => status(i) !== 'sold').length;
+  const total = data.sections.reduce((n, s) => n + left(s), 0);
+  const list = [['all', t('all'), total], ['now', t('now'), null],
+                ...data.sections.map(s => [s.key, s.title[lang], left(s)])];
+  const box = document.getElementById('chips');
+  box.innerHTML = list.map(([key, label, n]) =>
+    `<button class="chip ${key === 'now' ? 'now' : ''}" data-k="${esc(key)}" aria-pressed="${key === filter}">${esc(label)}${n != null ? `<span class="n">${n}</span>` : ''}</button>`
+  ).join('');
+  box.onclick = e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    filter = b.dataset.k;
+    box.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b));
+    render();
+    window.scrollTo({ top: document.querySelector('.filters').offsetTop, behavior: 'smooth' });
+  };
+}
+
+function header(meta) {
+  const pick = (en, ru) => lang === 'ru' ? known(meta[ru]) || known(meta[en]) : known(meta[en]) || known(meta[ru]);
+  const when = pick('Departure', 'Отъезд').replace(/\s*\d{4}$/, '');
+  const where = pick('Area', 'Район').replace(/\s*\(.*\)/, '');
+  document.getElementById('lede').innerHTML = t('lede')(esc(when), esc(where));
+  const ig = (meta['Instagram'] || '').replace(/^@/, '').trim();
+  if (ig && !unknown(ig)) {
+    const dm = document.getElementById('dm');
+    dm.href = `https://ig.me/m/${encodeURIComponent(ig)}`;
+    dm.hidden = false;
+  }
+  document.getElementById('foot').textContent = t('foot');
+}
+
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.title = t('docTitle');
+  document.getElementById('title').textContent = t('title');
+  document.querySelector('[data-t="dm"]').textContent = t('dm');
+  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
+  if (data) { header(data.meta); chips(); render(); }
+  else document.getElementById('lede').textContent = t('loading');
+}
+
+document.querySelector('.lang').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b || b.dataset.lang === lang) return;
+  lang = b.dataset.lang;
+  try { localStorage.setItem('lang', lang); } catch (e) {}
+  applyLang();
+});
+
+// Просмотр фото на весь экран
+const viewer = document.getElementById('viewer');
+document.addEventListener('click', e => {
+  if (e.target.matches('.photos img')) {
+    viewer.querySelector('img').src = e.target.src;
+    viewer.querySelector('img').alt = e.target.alt;
+    viewer.showModal();
+  } else if (e.target === viewer || e.target.closest('dialog button')) {
+    viewer.close();
+  }
+});
+
+applyLang();
+fetch(SOURCE, { cache: 'no-cache' })
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+  .then(md => { data = parse(md); applyLang(); })
+  .catch(() => {
+    document.getElementById('lede').textContent = '';
+    document.getElementById('list').innerHTML = `<p class="error">${t('error')}</p>`;
+  });
+</script>
+</body>
+</html>
